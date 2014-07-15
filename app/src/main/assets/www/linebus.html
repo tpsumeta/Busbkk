@@ -10,35 +10,73 @@
 	<script src="jquery/demos/js/jquery.js"></script>
 	<script src="jquery/jquery.mobile-1.4.2.min.js"></script>
 
+
 </head>
 
-<body><center>
+<body>
+
 <div data-role="page">
 
 	<div data-role="header">
 		<h1>MyBus Buddy</h1>
-	</div><!-- /header -->
+	</div>
 
 	<div role="main" class="ui-content">
     
     <div class="ui-grid-solo">
     <img src="images/bus.png"/>
-    </div>	
-    <form action="databus.php">
-<label for="text-basic">ค้นหาสายรถเมล์</label>
+    </div>
 
-<ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars...">
-    <li><a href="#">Acura</a></li>
-    <li><a href="#">Audi</a></li>
-    <li><a href="#">Audi</a></li>
-    <li><a href="#">hudi</a></li>
-    <li><a href="#">sudi</a></li>
+        <script charset="utf-8" type="text/javascript">
+                $.ajax({
+                url:'http://www.bus.itthailand.net/service/test.php',
+                type:'POST',
+                data:data,
+                dataType:'json',
+                success:function(data){
+                $("#result").html("");
+                for(var i in data){
+                $("#result").append("<li>"+data[i]+"</li>");
+                }
+                }
+                });
+            }
+        </script>
 
-</ul>
 
-<br/>
 
-</form>
-</center>
+        <center><b>Bikes or Cars</b></center>
+        <center><input onclick="connect(this.value)" type="button" value="cars" /></center>
+        <center><input onclick="connect(this.value)" type="button" value="bikes" /></center>
+        <center><b>Results</b></center>
+        <ul id="result"></ul>
+
+
+
+
+
+     <form action="databus.html">
+
+        <label for="text-basic">ค้นหาสายรถเมล์</label>
+
+        <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars...">
+            <li><a href="#">Acura</a></li>
+            <li><a href="#">Audi</a></li>
+            <li><a href="#">Audi</a></li>
+            <li><a href="#">hudi</a></li>
+            <li><a href="#">sudi</a></li>
+        </ul>
+
+
+
+
+
+    <br/>
+
+    </form>
+
+    </div>
+
 </body>
+
 </html>
