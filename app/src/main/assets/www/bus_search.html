@@ -17,7 +17,6 @@
 
     <div data-role="page">
 
-
         <div data-role="header">
             <h1>MyBus Buddy</h1>
         </div>
@@ -29,7 +28,7 @@
 
         $( document ).ready(function() {
 
-            connect();
+                connect();
 
             function connect(){
                 var term= 0;
@@ -42,21 +41,46 @@
                 alert("no connection");},
                 timeout:60000,
                 success:function(data){
-                $("#result").html("");
+                  $('#result').empty();
                 for(var i in data){
-                $("#result").append("<li><a href='databus.html'"+data[i]+">"+data[i]+"</a></li>");
+                $("#result").append('<li><a href="#" data-club-id="' + data[i].b_id + '" rel="external">'  + data[i].linebus +  '</a></li>');
+                $('#result').listview('refresh');
                 }
                 }
                 });
             }
 
+            function databus(id){
+                var term= 0;
+                $.ajax({
+                url:'http://www.bus.itthailand.net/service/bus_data.php?id='+id,
+                type:'POST',
+                data:term,
+                dataType:'json',
+                error:function(jqXHR,text_status,strError){
+                alert("no connection");},
+                timeout:60000,
+                success:function(data){
 
-            function show(){
-             $("#result").show();
+                abc(data.toString());
+                }
+                });
             }
 
+            function abc(val){
+                alert(val);
+            }
+
+
+          $(document).on('click', '#result li a', function () {
+            var a = $(this).data('club-id');
+             databus(a);
+          });
+
+
+
+
         });
-        
 
         </script>
 
@@ -64,16 +88,7 @@
 
                 <label for="text-basic">ค้นหาสายรถเมล์</label>
 
-                <ul id="result"   data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars...">
-
-                </ul>
-
-
-
-
-
-
-
+                <ul  id="result"   data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars..."></ul>
 
 
 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multi-page template</title>
+
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.2.min.css" />
+    <script src="jquery/demos/js/jquery.js"></script>
+    <script src="jquery/jquery.mobile-1.4.2.min.js"></script>
+
+</head>
+
+<body>
+    <center>
+
+    <div data-role="page">
+
+
+        <div data-role="header">
+            <h1>MyBus Buddy</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+
+
+        <script charset="utf-8" type="text/javascript">
+
+        $( document ).ready(function() {
+
+             var id_bus =1;
+
+             connect(id_bus);
+
+            function connect(id_bus){
+                var term= 1;
+                $.ajax({
+                url:'http://www.bus.itthailand.net/service/bus_data.php?id='+id_bus,
+                type:'POST',
+                data:'',
+                dataType:'json',
+                error:function(jqXHR,text_status,strError){
+                alert("no connection");},
+                timeout:60000,
+                success:function(data){
+                $("#result").html("");
+                for(var i in data){
+                $("#result").append("<li><a href='databus.html'"+data[i]+">"+data[i]+"</a></li>");
+                }
+                }
+                });
+            }
+
+
+               var path = window.location.pathname;
+            alert("window.location.pathname : " + path);
+
+            var href = window.location.href;
+            alert("window.location.href : " + href);
+
+            var hash = window.location.hash;
+            alert("window.location.hash : " + hash);
+
+            $(document).ready(function(){
+                //JQuery code for getting current URL
+                var URL = $(location).attr('href');
+                alert("Current URL Using JQuery : " + URL);
+            });
+
+
+
+        });
+
+
+        </script>
+
+
+
+
+
+            <div id="result">
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+    </center>
+
+</body>
+</html>
