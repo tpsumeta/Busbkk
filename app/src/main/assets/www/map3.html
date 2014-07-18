@@ -90,7 +90,7 @@ $(function(){
 		var request={
 			origin:FromPlace, // สถานที่เริ่มต้น
 			destination:ToPlace, // สถานที่ปลายทาง
-			travelMode: GGM.DirectionsTravelMode.DRIVING // กรณีการเดินทางโดยรถยนต์
+			travelMode: GGM.DirectionsTravelMode.TRANSIT // กรณีการเดินทางโดยรถยนต์
 		};
 		// ส่งคำร้องขอ จะคืนค่ามาเป็นสถานะ และผลลัพธ์
 		directionsService.route(request, function(results, status){
