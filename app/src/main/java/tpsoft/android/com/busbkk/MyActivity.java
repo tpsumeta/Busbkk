@@ -13,7 +13,8 @@ public class MyActivity extends DroidGap {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.loadUrl("file:///android_asset/www/index.html");
+        super.setIntegerProperty("splashscreen", R.drawable.logo);
+        super.loadUrl("file:///android_asset/www/index.html",10000);
 
     }
 
@@ -21,7 +22,7 @@ public class MyActivity extends DroidGap {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
+       // getMenuInflater().inflate(R.menu.my, menu);
         return true;
     }
 

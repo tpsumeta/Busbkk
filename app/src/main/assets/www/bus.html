@@ -6,30 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Multi-page template</title>
 
-    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.2.min.css"/>
     <script src="jquery/demos/js/jquery.js"></script>
     <script src="jquery/jquery.mobile-1.4.2.min.js"></script>
 
 </head>
 
 <body>
-    <center>
+<center>
 
     <div data-role="page">
 
         <div data-role="header">
-            <a href="index.html" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext"></a>
+            <a href="index.html"
+               class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext"></a>
+
             <h1>MyBus Buddy</h1>
         </div>
 
         <div role="main" class="ui-content">
 
 
-        <script charset="utf-8" type="text/javascript">
+            <script charset="utf-8" type="text/javascript">
 
         $( document ).ready(function() {
 
+                $("#btn1").hide();
                 connect();
+
 
             function connect(){
                 var term= 0;
@@ -54,7 +58,7 @@
             function databus(id){
                 var term= 0;
                 $.ajax({
-                url:'http://www.bus.itthailand.net/service/bus_data.php?id='+id,
+                url:'http://www.bus.itthailand.net/service/show_bus.php?id='+id,
                 type:'POST',
                 data:term,
                 dataType:'json',
@@ -62,10 +66,24 @@
                 alert("no connection");},
                 timeout:60000,
                 success:function(data){
-                abc(data.toString());
+                   $('#data_bus').empty();
+                for(var i in data){}
+                $("#data_bus").append('<a class="ui-btn ui-btn-b">สายรถเมล์</a>'
+                + data[i].linebus +'<a class="ui-btn ui-btn-b">เส้นทางเดินรถ</a>'
+                + data[i].way +'<a class="ui-btn ui-btn-b">อัตราค่าบริการ</a>'
+                + data[i].price +'<a class="ui-btn ui-btn-b">เวลาเดินรถ</a>'
+                + data[i].time +'<a class="ui-btn ui-btn-b">อัตราค่าบริการ</a>'+ data[i].type);
                 }
                 });
+                $("#bus").hide();
+                $("#btn1").show();
             }
+
+            $( "#btn1" ).click(function() {
+              $("#bus").show();
+              $("#data_bus").hide();
+              $("#btn1").hide();
+            });
 
             function abc(val){
                 alert(val);
@@ -75,6 +93,7 @@
           $(document).on('click', '#result li a', function () {
             var a = $(this).data('club-id');
              databus(a);
+             $("#data_bus").show();
           });
 
 
@@ -82,20 +101,30 @@
 
         });
 
-        </script>
+
+            </script>
+
+            <button class="ui-btn" id="btn1">กลับ</button>
+
+            <div id="data_bus"></div>
+
+
+            <div id="bus">
+            <label for="text-basic">ค้นหาสายรถเมล์</label>
 
 
 
-                <label for="text-basic">ค้นหาสายรถเมล์</label>
+            <ul id="result" data-role="listview" data-filter="true" data-filter-reveal="true"
+                data-filter-placeholder="Search cars..."></ul>
 
-                <ul  id="result"   data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars..."></ul>
+            </div>
 
 
 
         </div>
 
     </div>
-    </center>
+</center>
 
 </body>
 </html>

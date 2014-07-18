@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Multi-page template</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multi-page template</title>
 
-        <link rel="stylesheet" href="jquery/jquery.mobile-1.4.2.min.css" />
-        <script src="jquery/demos/js/jquery.js"></script>
-        <script src="jquery/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.2.min.css"/>
+    <script src="jquery/demos/js/jquery.js"></script>
+    <script src="jquery/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
-    </head>
 
-    <body><center>
+</head>
 
-        <div data-role="page">
+<body>
+<center>
 
-            <div data-role="header">
-                <h1>MyBus Buddy</h1>
+    <div data-role="page">
+
+        <div data-role="header">
+            <h1>MyBus Buddy</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+
+            <div class="ui-grid-solo">
+                <img src="images/bus.png"/>
             </div>
 
-            <div role="main" class="ui-content">
+            <script type="text/javascript" charset="utf-8">
 
-                <div class="ui-grid-solo">
-                    <img src="images/bus.png"/>
-                </div>	
+            // Wait for Cordova to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // Cordova is ready
+            //
+            function onDeviceReady() {
+                navigator.splashscreen.hide();
+            }
+
+            </script>
 
 
-                <div data-demo-html="true">
-                    <a href="bus_search.html" class="ui-btn ui-corner-all">ค้นหาสายรถเมล์</a>
-                    <a href="place.html" class="ui-btn ui-corner-all">ค้นหาสถานที่</a>
-                    <a href="test.html" class="ui-btn ui-corner-all">ทดสอบ</a>
+            <div data-demo-html="true">
+                <!--<a href="bus_search.html" rel="external" class="ui-btn ui-corner-all">ค้นหาสายรถเมล์</a>-->
+                <a href="bus.html" rel="external" class="ui-btn ui-corner-all">ค้นหาสายรถเมล์</a>
+                <!--<a href="place.html" rel="external" class="ui-btn ui-corner-all">ค้นหาสถานที่</a>-->
+                <!--<a href="map.html" rel="external" class="ui-btn ui-corner-all">แผนที่</a>-->
+                <a href="map3.html" rel="external" class="ui-btn ui-corner-all">แผนที่</a>
+                <a href="map4.html" rel="external" class="ui-btn ui-corner-all">แผนที่</a>
 
-                </div>
-
-
+                <!--<a href="test.html" rel="external" class="ui-btn ui-corner-all">ทดสอบ</a>-->
             </div>
+
 
         </div>
-    </center>
+
+    </div>
+</center>
 </body>
 </html>

@@ -32,10 +32,16 @@
 
     <access origin="*"/>
 
-    <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
+
+
+     <!--<content src="http://mysite.com/myapp.html" /> for external pages-->
+
+
     <content src="index.html" />
 
     <preference name="loglevel" value="DEBUG" />
+
+
     <!--
       <preference name="splashscreen" value="resourceName" />
       <preference name="backgroundColor" value="0xFFF" />
@@ -103,5 +109,8 @@
     </feature>
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
+
+        <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+
     </plugins>
 </widget>
